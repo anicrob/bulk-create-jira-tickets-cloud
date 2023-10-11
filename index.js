@@ -95,10 +95,13 @@ const bulkCreateIssues = async () => {
         createTicket();
       } else {
         console.log(
-          `${new Date().toGMTString()} - ${response.status}: ${
+          `${new Date().toGMTString()} - There was an error creating an issue in project with id ${projectIds[i]}. ${response.status}: ${
             response.statusText
           }`
         );
+        count += 1;
+        randomSummary = Math.random().toString(36).substring(2, 7);
+        createTicket();
       }
     } catch (err) {
       console.log(err);
