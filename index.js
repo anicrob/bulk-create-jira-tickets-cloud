@@ -55,7 +55,10 @@ const bulkCreateIssues = async () => {
         summary: randomSummary,
       },
     };
-    if (count === parseInt(`${process.env.NUMBER_OF_TICKETS_TO_CREATE_PER_PROJECT}`)) {
+    if (
+      count ===
+      parseInt(`${process.env.NUMBER_OF_TICKETS_TO_CREATE_PER_PROJECT}`)
+    ) {
       count = 0;
       i += 1;
       if (projectIds[i] === projectIds[projectIds.length - 1]) {
