@@ -61,7 +61,7 @@ const bulkCreateIssues = async () => {
     ) {
       count = 0;
       i += 1;
-      if (projectIds[i] === projectIds[projectIds.length - 1]) {
+      if (i > projectIds.length - 1) {
         console.log(`\n${new Date().toGMTString()} - ✅ All done!`);
         return;
       }
