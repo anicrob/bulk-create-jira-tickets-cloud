@@ -43,14 +43,14 @@ const bulkCreateIssues = async () => {
   var count = 0;
   const projectIds = await getProjectIds();
   const createTicket = async () => {
-    var randomSummary = Math.random().toString(36).substring(2, 7);
+    var randomSummary = Math.random().toString(36).substring(2, 15);
     let issueBody = {
       fields: {
         project: {
           id: parseInt(projectIds[i]),
         },
         issuetype: {
-          id: 10001,
+          id: parseInt(`${process.env.ISSUE_TYPE_ID}`),
         },
         summary: randomSummary,
       },
@@ -95,9 +95,9 @@ const bulkCreateIssues = async () => {
         createTicket();
       } else {
         console.log(
-          `${new Date().toGMTString()} - There was an error creating an issue in project with id ${projectIds[i]}. ${response.status}: ${
-            response.statusText
-          }`
+          `${new Date().toGMTString()} - There was an error creating an issue in project with id ${
+            projectIds[i]
+          }. ${response.status}: ${response.statusText}`
         );
         count += 1;
         randomSummary = Math.random().toString(36).substring(2, 7);
